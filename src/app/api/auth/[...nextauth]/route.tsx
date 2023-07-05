@@ -12,13 +12,13 @@ const handler = NextAuth({
     providers: [
       
         DiscordProvider({
-            clientId: process.env.DISCORD_CLIENT_ID,
-            clientSecret: process.env.DISCORD_CLIENT_SECRET,
+            clientId: process.env.DISCORD_CLIENT_ID as string,
+            clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
         }),
         AzureADProvider({
             name: "Microsoft 365",
-            clientId: process.env.AZURE_AD_CLIENT_ID,
-            clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
+            clientId: process.env.AZURE_AD_CLIENT_ID as string,
+            clientSecret: process.env.AZURE_AD_CLIENT_SECRET as string,
             tenantId: process.env.AZURE_AD_TENANT_ID,
         }),
         EmailProvider({
