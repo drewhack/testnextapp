@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"    
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",
@@ -29,6 +29,4 @@
     "tailwindcss": "3.3.2",
     "typescript": "5.1.6"
   }
-
- 
 }
