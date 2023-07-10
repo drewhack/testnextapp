@@ -34,6 +34,8 @@ model Account {
     id_token          String? @db.Text
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    oauth_token_secret String?
+    oauth_token        String?
 
     @@unique([provider, providerAccountId])
 }
