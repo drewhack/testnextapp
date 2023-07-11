@@ -22,14 +22,15 @@ declare module "next-auth" {
     }
 }
 
-const handler = NextAuth({ callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
+const handler = NextAuth({ 
+    callbacks: {
+        session: ({ session, user }) => ({
+        ...session,
+        user: {
+            ...session.user,
+            id: user.id,
+        },
+        }),
   },    
     providers: [
       
