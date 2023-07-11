@@ -1,14 +1,36 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { PrismaClient } from '@prisma/client';
 import NextAuth from "next-auth";
-
+import {
+    getServerSession,
+    type NextAuthOptions,
+    type DefaultSession,
+  } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import DiscordProvider from "next-auth/providers/discord";
 import AzureADProvider from "next-auth/providers/azure-ad";
 
 const prisma = new PrismaClient();
 
-const handler = NextAuth({
+declare module "next-auth" {
+    interface Session extends DefaultSession {
+      user: {
+        id: string;
+        // ...other properties
+        // role: UserRole;
+      } & DefaultSession["user"];
+    }
+}
+
+const handler = NextAuth({ callbacks: {
+    session: ({ session, user }) => ({
+      ...session,
+      user: {
+        ...session.user,
+        id: user.id,
+      },
+    }),
+  },    
     providers: [
       
         DiscordProvider({
