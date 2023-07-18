@@ -10,6 +10,7 @@ import EmailProvider from "next-auth/providers/email";
 import DiscordProvider from "next-auth/providers/discord";
 import AzureADProvider from "next-auth/providers/azure-ad";
 
+
 const prisma = new PrismaClient();
 
 declare module "next-auth" {
@@ -23,24 +24,17 @@ declare module "next-auth" {
 }
 
 const handler = NextAuth({ 
-    callbacks: {
-        session: ({ session, user }) => ({
-        ...session,
-        user: {
-            ...session.user,
-            id: user.id,
-        },
-        }),
-        async redirect({ url, baseUrl }) {
-            // Allows relative callback URLs
-            if (url.startsWith("/")) return `${baseUrl}${url}`
-            // Allows callback URLs on the same origin
-            else if (new URL(url).origin === baseUrl) return url
-            return baseUrl
-          }
-        
-        
-  },    
+    session: {
+      strategy: "jwt",
+      maxAge: 1 * 24 * 60 * 60,
+      updateAge: 4 * 60 * 60,
+      generateSessionToken: () => {
+        return self.crypto.randomUUID?.() 
+      }
+
+
+
+    },
     providers: [
       
         DiscordProvider({
@@ -69,3 +63,5 @@ const handler = NextAuth({
   });
 
   export { handler as GET, handler as POST };
+
+  

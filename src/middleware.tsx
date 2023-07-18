@@ -1,5 +1,7 @@
 export { default } from "next-auth/middleware"
 
-export const config = { 
-    matcher: ["/dashboard"] 
+import type { NextRequest } from 'next/server'
+
+export const config = {
+  matcher: ['/profile/:path*', '/dashboard/:path*'],
 }
