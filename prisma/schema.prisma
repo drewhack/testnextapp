@@ -54,6 +54,7 @@ model User {
     email         String?   @unique
     emailVerified DateTime?
     image         String?
+    password      String? @db.Text
     accounts      Account[]
     sessions      Session[]
 }
@@ -65,3 +66,5 @@ model VerificationToken {
 
     @@unique([identifier, token])
 }
+
+

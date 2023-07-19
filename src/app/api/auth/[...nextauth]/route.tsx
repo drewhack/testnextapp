@@ -12,6 +12,7 @@ import AzureADProvider from "next-auth/providers/azure-ad";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 
+
 const prisma = new PrismaClient();
 
 declare module "next-auth" {
