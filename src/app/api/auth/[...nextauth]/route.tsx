@@ -12,7 +12,6 @@ import AzureADProvider from "next-auth/providers/azure-ad";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 
-
 const prisma = new PrismaClient();
 
 declare module "next-auth" {
@@ -68,23 +67,34 @@ const handler = NextAuth({
           // e.g. domain, username, password, 2FA token, etc.
           // You can pass any HTML attribute to the <input> tag through the object.
           credentials: {
-            username: { label: "Username", type: "text", placeholder: "jsmith" },
+            email: { label: "Email", type: "text", placeholder: "jsmith@example.com" },
             password: { label: "Password", type: "password" }
           },
           async authorize(credentials, req) {
-            // Add logic here to look up the user from the credentials supplied
-            const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
-      
-            if (user) {
-              // Any object returned will be saved in `user` property of the JWT
-              return user
-            } else {
-              // If you return null then an error will be displayed advising the user to check their details.
-              return null
-      
-              // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
+            const { email, password } = credentials;
+        
+            try {
+              // Use Prisma to query the user with the provided username and password
+              const user = await prisma.user.findUnique({
+                where: {
+                  email: email,
+                  password: password, // Note: Replace 'password' with the actual field name for the password in your Prisma user model
+                },
+              });
+        
+              if (user) {
+                // If the user is found, return it. Any object returned will be saved in the `user` property of the JWT.
+                return user;
+              } else {
+                // If the user is not found, return null to indicate login failure.
+                return null;
+              }
+            } catch (error) {
+              // Handle any potential errors that might occur during the database query.
+              console.error('Error fetching user:', error);
+              throw new Error('Error fetching user'); // You can also Reject this callback with an Error to redirect to the error page.
             }
-          }
+          },
         })        
     ],
     adapter: PrismaAdapter(prisma),
