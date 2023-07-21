@@ -2,8 +2,6 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { PrismaClient } from '@prisma/client';
 import NextAuth from "next-auth";
 import {
-    getServerSession,
-    type NextAuthOptions,
     type DefaultSession,
   } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
@@ -70,15 +68,15 @@ const handler = NextAuth({
             email: { label: "Email", type: "text", placeholder: "jsmith@example.com" },
             password: { label: "Password", type: "password" }
           },
-          async authorize(credentials, req) {
-            const { email, password } = credentials;
+          async authorize(credentials: { email: string; password: string } | undefined, req) {
+            const { email, password } = credentials || { email: "", password: "" }; // Add default values to handle undefined
         
             try {
               // Use Prisma to query the user with the provided username and password
-              const user = await prisma.user.findUnique({
+              const user = await prisma.user.findFirst ({
                 where: {
                   email: email,
-                  password: password, // Note: Replace 'password' with the actual field name for the password in your Prisma user model
+                  password: password,
                 },
               });
         
