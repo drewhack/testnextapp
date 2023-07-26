@@ -1,11 +1,13 @@
 'use client';
 import { Container } from 'react-bootstrap';
 import React, { useState } from 'react';
-import Router from 'next/router'
+import { useRouter } from 'next/navigation'
 
 
 
 export const SignUpForm: React.FC = () => {
+    
+        const Router = useRouter();
 
         const [inputEmail, setEmail] = useState('');
         const [inputPassword, setPassword] = useState('');
