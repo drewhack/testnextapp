@@ -1,12 +1,15 @@
 import { getSession } from 'next-auth/react';
 import { PrismaClient } from '@prisma/client';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server'
+
 
 const prisma = new PrismaClient();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const session = await getSession({ req });
-  const { inputEmail, inputPassword } = req.body;
+export default async function POST(request: Request, response: Response) {
+  const formData  = await request.formData();
+  const inputEmail = formData.get('inputEmail')
+  const inputPassword = formData.get('inputPassword')
+  
 
 
   const result = await prisma.user.create({
@@ -16,5 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       
     },
   });
-  res.json(result);
+  console.log(Response);
+  return NextResponse.json({ inputEmail, inputPassword })
+  
 }
