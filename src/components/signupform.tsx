@@ -5,21 +5,28 @@ import Router from 'next/router'
 
 
 
-export const SignUpForm = () => {
+export const SignUpForm: React.FC = () => {
 
         const [inputEmail, setEmail] = useState('');
         const [inputPassword, setPassword] = useState('');
       
         const submitData = async (e: React.SyntheticEvent) => {
+          console.log('Sending data:');
+          console.log('Sending data:', inputEmail, inputPassword);            
           e.preventDefault();
           try {
+
             const body = { inputEmail, inputPassword };
+            console.log('Sending data:', body);
+
             await fetch('/api/users/create', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(body),
+
             });
             await Router.push('/drafts');
+
           } catch (error) {
             console.error(error);
           }
@@ -37,6 +44,7 @@ export const SignUpForm = () => {
                 <input 
                     type="email" 
                     id="inputEmail" 
+                    name="inputEmail" 
                     onChange={(e) => setEmail(e.target.value)}
                     className="form-control" 
                     placeholder="Email address" 
@@ -48,6 +56,7 @@ export const SignUpForm = () => {
                 <input 
                     type="password" 
                     id="inputPassword" 
+                    name="inputPassword" 
                     onChange={(e) => setPassword(e.target.value)}                    
                     className="form-control" 
                     placeholder="Password" 

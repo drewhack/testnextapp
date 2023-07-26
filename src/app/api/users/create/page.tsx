@@ -1,19 +1,14 @@
 import { getSession } from 'next-auth/react';
 import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const prisma = new PrismaClient();
 
-// POST /api/post
-// Required fields in body: title
-// Optional fields in body: content
-
-export default async function handle(req: any, res: any) {
-    console.log('here');
-    console.log(req.body);
-    console.log('there')
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const session = await getSession({ req });
   const { inputEmail, inputPassword } = req.body;
 
-  const session = await getSession({ req });
+
   const result = await prisma.user.create({
     data: {
       email: inputEmail,
