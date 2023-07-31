@@ -13,13 +13,12 @@ export const SignUpForm: React.FC = () => {
         const [inputPassword, setPassword] = useState('');
       
         const submitData = async (e: React.SyntheticEvent) => {
-          console.log('Sending data:');
-          console.log('Sending data:', inputEmail, inputPassword);            
+           
           e.preventDefault();
           try {
 
             const body = { inputEmail, inputPassword };
-            console.log('Sending data:', body);
+
 
             await fetch('/api/users/create', {
               method: 'POST',
