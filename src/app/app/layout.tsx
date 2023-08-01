@@ -1,4 +1,5 @@
 import BsHeader from '@/components/bs-header'
+import { BsScripts } from '@/components/bsscripts'
 import { Inter } from 'next/font/google'
 
 
@@ -18,22 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" crossOrigin="anonymous"></script>
 
-      <script
-        src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js"
-        crossOrigin="anonymous"></script>
 
-      <script
-        src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js"
-        crossOrigin="anonymous" ></script>
-
-      <script>var Alert = ReactBootstrap.Alert;</script>  
       <body className={inter.className}>
+
         <BsHeader />
+
         {children}
         
-        </body>
+      </body>
     </html>
   )
 }
