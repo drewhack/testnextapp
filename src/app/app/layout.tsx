@@ -1,5 +1,4 @@
 import BsHeader from '@/components/bs-header'
-import { BsScripts } from '@/components/bsscripts'
 import { Inter } from 'next/font/google'
 
 
