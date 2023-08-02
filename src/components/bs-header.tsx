@@ -4,8 +4,8 @@ import { Navbar, Nav, Button, Form, FormControl, Container, NavDropdown } from "
 function BsHeader() {
     return (
         <header>
-            <Container>
-            <Navbar collapseOnSelect  bg="dark" data-bs-theme="dark" fixed="top" expand="md">
+            
+            <Navbar collapseOnSelect  bg="dark" data-bs-theme="dark" expand="md">
                 <Container fluid>
                     <Navbar.Brand href="#">Fixed navbar</Navbar.Brand>
                 
@@ -38,7 +38,7 @@ function BsHeader() {
             </Navbar.Collapse>
             </Container>
             </Navbar>
-            </Container>            
+                     
       </header>
 )};
 
