@@ -1,6 +1,5 @@
-import BsHeader from '@/components/bs-header'
 import { Inter } from 'next/font/google'
-
+import Sidebar from '@/components/tw-sidebar'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,12 +16,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
 
+        <html className="h-full bg-white">
+        <body className="h-full">
 
-      <body className={inter.className}>
-
-        <BsHeader />
+        <Sidebar />
 
         {children}
         

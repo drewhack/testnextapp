@@ -1,12 +1,24 @@
 'use client'
-import { Navbar, Nav, Button, Form, FormControl, Container, NavDropdown } from "react-bootstrap"
+import { Navbar, Nav, Button, Form, FormControl, Container, NavDropdown, Offcanvas } from "react-bootstrap"
+import { useState } from 'react';
 
 function BsHeader() {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+        
     return (
+
+
+
         <header>
             
             <Navbar collapseOnSelect  bg="dark" data-bs-theme="dark" expand="md">
                 <Container fluid>
+                <Button variant="primary" onClick={handleShow}>
+                        Launch
+                    </Button>
                     <Navbar.Brand href="#">Fixed navbar</Navbar.Brand>
                 
             <Navbar.Toggle aria-controls="navbarCollapse" />
@@ -38,6 +50,15 @@ function BsHeader() {
             </Navbar.Collapse>
             </Container>
             </Navbar>
+            <Offcanvas show={show} onHide={handleClose}>
+                <Offcanvas.Header closeButton>
+                <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                Some text as placeholder. In real life you can have the elements you
+                have chosen. Like, text, images, lists, etc.
+                </Offcanvas.Body>
+            </Offcanvas>
                      
       </header>
 )};

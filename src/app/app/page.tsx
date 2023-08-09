@@ -5,10 +5,8 @@ import ThemeSwitcher from '@/components/bs-themeswitcher'
 
 export default function Home() {
   return (
-    <main className="tw-flex tw-min-h-screen tw-flex-col tw-items-center tw-justify-between tw-p-24">
-      <BootstrapRow />
-      <ThemeSwitcher />
-      <SignOutButton />
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+
     </main>
   )
 }
