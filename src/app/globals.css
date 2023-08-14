@@ -7,6 +7,12 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --nav-bg-color: #2c2c2c;
+  --nav-bg-highlight: #f200f2;
+  --nav-text-color: #ffffff;
+  --nav-icon-color: #ffff00;
+  --nav-bg-border: #00ffff;
+  --nav-prof-text: #abcdef; 
 }
 
 @media (prefers-color-scheme: dark) {
