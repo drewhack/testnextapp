@@ -1,19 +1,60 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "~bootstrap/dist/css/bootstrap.min.css";
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --nav-bg-color: #2c2c2c;
-  --nav-bg-highlight: #f200f2;
-  --nav-text-color: #ffffff;
-  --nav-icon-color: #ffff00;
-  --nav-bg-border: #00ffff;
-  --nav-prof-text: #abcdef; 
+@layer base {
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+
+  }
 }
+  .theme-dark {
+
+    --nav-bg-color: #2c2c2c;
+    --nav-bg-highlight: #f200f2;
+    --nav-text-color: #ffffff;
+    --nav-icon-color: #ffff00;
+    --nav-bg-border: #00ffff;
+    --nav-prof-text: #abcdef; 
+
+  }
+
+  .theme-light {
+
+    --nav-bg-color: #ffffff;
+    --nav-bg-highlight: #f200f2;
+    --nav-text-color: #2c2c2c;
+    --nav-icon-color: #00ffff;
+    --nav-bg-border: #ffff00;
+    --nav-prof-text: #123456; 
+
+  }
+
+  .theme-blue {
+
+    --nav-bg-color: #15efff;
+    --nav-bg-highlight: #0f0bfa;
+    --nav-text-color: #ffffff;
+    --nav-icon-color: #37fd83;
+    --nav-bg-border: #00ffff;
+    --nav-prof-text: #abcdef; 
+
+  }
+
+  .theme-highcontrast {
+
+    --nav-bg-color: #2c2c2c;
+    --nav-bg-highlight: #f200f2;
+    --nav-text-color: #ffffff;
+    --nav-icon-color: #ffff00;
+    --nav-bg-border: #00ffff;
+    --nav-prof-text: #abcdef; 
+
+  }
+
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -33,38 +74,3 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-
-/* Sign-in-form */
-
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-.form-signin .checkbox {
-  font-weight: 400;
-}
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-/* end signup form */
-
-/* navbar and footer */

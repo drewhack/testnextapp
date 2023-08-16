@@ -1,6 +1,6 @@
 'use client'
 import { Fragment, useState } from 'react'
-import { Dialog, Menu, Transition, Disclosure } from '@headlessui/react'
+import { Dialog, Menu, Transition, Disclosure, RadioGroup } from '@headlessui/react'
 import {
   Bars3Icon,
   BellIcon,
@@ -13,10 +13,13 @@ import {
   UsersIcon,
   XMarkIcon,
   ChevronRightIcon,
-  RectangleGroupIcon
+  RectangleGroupIcon,
+  SwatchIcon
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { signOut } from "next-auth/react"
+
+
 
 
 const navigation = [
@@ -119,6 +122,7 @@ export default function Sidebar() {
                   </Transition.Child>
                   {/* Sidebar component, swap this element with another sidebar if you like */}
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-nav-bg-border bg-nav-bg-color px-6">
+                    
       <div className="flex h-16 shrink-0 items-center">
         <img
           className="h-8 w-auto"
@@ -309,6 +313,50 @@ export default function Sidebar() {
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
+
+
+                <Menu as="div" className="relative">
+                  <Menu.Button className="-m-2.5 p-2.5 text-nav-icon-color hover:text-gray-5005">
+                    <span className="sr-only">Open Theme Menu</span>
+                    <span className="hidden lg:flex lg:items-center">
+                      <SwatchIcon className="h-6 w-6" aria-hidden="true" />
+                    </span>
+                  </Menu.Button>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-nav-bg-color py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                    <RadioGroup value={color} onChange={setColor}>
+                        <RadioGroup.Label className="mt-5 block">
+                          Select a color:
+                        </RadioGroup.Label>
+                        <div className="">
+                          {colors.map((c) => {
+                            return (
+                              <div>
+                              <RadioGroup.Option
+                                className=""
+                                value={c}
+                                key={c}
+                              >
+                                {c}
+                              </RadioGroup.Option>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </RadioGroup>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+
+
 
                 {/* Separator */}
                 <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10" aria-hidden="true" />
