@@ -69,25 +69,6 @@ function classNames(...classes: string[]) {
 export default function Sidebar({ color, setColor }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
-  // const getThemeColor = (selectedColor) => {
-  //   switch (selectedColor) {
-  //     case 'light':
-  //       return 'bg-white';
-  //     case 'dark':
-  //       return 'bg-black';
-  //     case 'blue':
-  //       return 'bg-blue-500';
-  //     case 'highcontrast':
-  //       return 'bg-gray-800';
-  //     default:
-  //       return ''; // default theme
-  //   }
-  // };
-  
-
-  // Define the color and setColor states
-  //const [color, setColor] = useState('highcontrast'); // You can set a default value if needed
-
   // Define the colors array
   const colors = ['light', 'dark', 'blue', 'highcontrast'];
 
@@ -101,7 +82,7 @@ export default function Sidebar({ color, setColor }) {
         <body class="h-full">
         ```
       */}
-      <div>
+      <div className={color === 'light' ? 'text-gray-900' : ''}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
             <Transition.Child
