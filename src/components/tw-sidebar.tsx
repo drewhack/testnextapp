@@ -1,5 +1,6 @@
 'use client'
 import { Fragment, useState } from 'react'
+import styles from './tw-sidebar.module.css'
 import { Dialog, Menu, Transition, Disclosure, RadioGroup } from '@headlessui/react'
 import {
   Bars3Icon,
@@ -65,8 +66,30 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Sidebar() {
+export default function Sidebar({ color, setColor }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  // const getThemeColor = (selectedColor) => {
+  //   switch (selectedColor) {
+  //     case 'light':
+  //       return 'bg-white';
+  //     case 'dark':
+  //       return 'bg-black';
+  //     case 'blue':
+  //       return 'bg-blue-500';
+  //     case 'highcontrast':
+  //       return 'bg-gray-800';
+  //     default:
+  //       return ''; // default theme
+  //   }
+  // };
+  
+
+  // Define the color and setColor states
+  //const [color, setColor] = useState('highcontrast'); // You can set a default value if needed
+
+  // Define the colors array
+  const colors = ['light', 'dark', 'blue', 'highcontrast'];
 
   return (
     <>
@@ -121,7 +144,7 @@ export default function Sidebar() {
                     </div>
                   </Transition.Child>
                   {/* Sidebar component, swap this element with another sidebar if you like */}
-                  <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-nav-bg-border bg-nav-bg-color px-6">
+                  <div className={`flex grow flex-col gap-y-5 overflow-y-auto border-r border-nav-bg-border px-6`}>
                     
       <div className="flex h-16 shrink-0 items-center">
         <img
@@ -332,26 +355,28 @@ export default function Sidebar() {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-nav-bg-color py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                    <RadioGroup value={color} onChange={setColor}>
-                        <RadioGroup.Label className="mt-5 block">
-                          Select a color:
-                        </RadioGroup.Label>
-                        <div className="">
-                          {colors.map((c) => {
-                            return (
-                              <div>
-                              <RadioGroup.Option
-                                className=""
-                                value={c}
-                                key={c}
-                              >
-                                {c}
-                              </RadioGroup.Option>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </RadioGroup>
+                    <RadioGroup value={color} onChange={(newColor) => {
+                        console.log("Selected color:", newColor);
+                        setColor(newColor);
+                      }}>
+                      <RadioGroup.Label className="mt-5 block">
+                        Select a color:
+                      </RadioGroup.Label>
+                      <div className="">
+                        {colors.map((c) => {
+                          return (
+                            <RadioGroup.Option key={c} value={c}>
+                              {({ checked }) => (
+                                <div className={`flex items-center p-2 cursor-pointer ${checked ? styles.checkmark : ''}`}>
+                                  {c}
+                                </div>
+
+                              )}
+                            </RadioGroup.Option>
+                          );
+                        })}
+                      </div>
+                    </RadioGroup>
                     </Menu.Items>
                   </Transition>
                 </Menu>

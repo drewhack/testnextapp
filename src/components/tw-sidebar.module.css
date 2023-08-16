@@ -1,0 +1,7 @@
+.checkmark::before {
+    content: '✔';
+    font-weight: bold;
+    color: blue;
+    margin-right: 8px;
+  }
+  
