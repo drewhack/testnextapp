@@ -1,0 +1,18 @@
+.checkmark::before {
+  content: '✔';
+  font-weight: bold;
+  color: blue;
+  margin-right: 8px;
+}
+
+.theme-light {
+    background-color: #ffffff; /* or any light color */
+    color: #333333; /* dark text color */
+}
+
+.theme-light a, .theme-light .text-class {
+    color: #333333; /* dark text color for links or specific text classes */
+}
+
+
+  
