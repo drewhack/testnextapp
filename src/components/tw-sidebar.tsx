@@ -67,6 +67,8 @@ function classNames(...classes: string[]) {
 
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const colors = ['light', 'dark', 'blue', 'highcontrast'];
+  const [color, setColor] = useState<string>(colors[1])
 
   return (
     <>

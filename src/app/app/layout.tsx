@@ -4,10 +4,6 @@ import Sidebar from '@/components/tw-sidebar'
 import {useState} from 'react'
 import type { NextPage } from 'next'
 
-const themes = ['light', 'dark', 'blue', 'highcontrast'];
-
-
-
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,13 +26,11 @@ export default function RootLayout({
         <html className="h-full bg-white">
           <body className="h-full">
           <div className={[
-            'bg-primaryBg flex h-screen flex-col justify-center',
+            
             color && `theme-${color}`,
             ]
             .filter(Boolean)
             .join(' ')}>
-              <Sidebar />
-
               {children}
           </div> 
           </body>
