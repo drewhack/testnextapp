@@ -3,9 +3,13 @@ import { Inter } from 'next/font/google'
 import Sidebar from '@/components/tw-sidebar'
 import {useState} from 'react'
 import type { NextPage } from 'next'
-
+import { store } from './store'
+import { Provider,Connect } from 'react-redux'
+import ReactDOM from 'react-dom/client'
+import React from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
+
 
 export const metadata = {
   title: 'TESTING',
@@ -19,10 +23,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const colors = ['light', 'dark', 'blue', 'highcontrast'];
+  const colors = ['light', 'dark', 'blue', 'highcontrast'] 
   const [color, setColor] = useState<string>(colors[1])
   return (
-
+    <Provider store={store}>
         <html className="h-full bg-white">
           <body className="h-full">
           <div className={[
@@ -35,5 +39,6 @@ export default function RootLayout({
           </div> 
           </body>
        </html>
+       </Provider>
   )
 }
