@@ -18,6 +18,8 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { signOut } from "next-auth/react"
+import { Counter } from '@/features/counter/counter'
+import { ThemeSelector } from '@/features/themes/themes'
 
 
 
@@ -416,7 +418,7 @@ export default function Sidebar() {
           </div>
                           {/*CHILDREN GO HERE */ }
           <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">{/* Your content */}</div>
+            <div className="px-4 sm:px-6 lg:px-8">< Counter />< ThemeSelector />{/* Your content */}</div>
           </main>
         </div>
       </div>

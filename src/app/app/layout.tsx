@@ -5,8 +5,10 @@ import {useState} from 'react'
 import type { NextPage } from 'next'
 import { store } from './store'
 import { Provider,Connect } from 'react-redux'
+import { useAppSelector, useAppDispatch } from '../../app/app/hooks'
 import ReactDOM from 'react-dom/client'
 import React from 'react'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,18 +25,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const colors = ['light', 'dark', 'blue', 'highcontrast'] 
-  const [color, setColor] = useState<string>(colors[1])
+  const themes = ['light', 'dark', 'blue', 'highcontrast'] 
+  const [theme, setTheme] = useState<string>(themes[2])
+ 
+
+ 
   return (
     <Provider store={store}>
         <html className="h-full bg-white">
           <body className="h-full">
           <div className={[
             
-            color && `theme-${color}`,
+            theme && `theme-${theme}`,
             ]
             .filter(Boolean)
             .join(' ')}>
+            <Sidebar /> 
               {children}
           </div> 
           </body>

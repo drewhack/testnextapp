@@ -10,7 +10,7 @@ import Sidebar from '@/components/tw-sidebar';
 export default function Home() {
   return (
     <main className="min-h-screen flex-col items-center">
-      <Sidebar /> 
+        HELLO123
     </main>
   )
 }
