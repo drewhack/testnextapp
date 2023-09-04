@@ -20,6 +20,9 @@ import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { signOut } from "next-auth/react"
 import { Counter } from '@/features/counter/counter'
 import { ThemeSelector } from '@/features/themes/themes'
+import { useAppSelector, useAppDispatch } from '@/app/app/hooks'
+import { setTheme } from '@/features/themes/themeSlice'
+
 
 
 
@@ -68,12 +71,15 @@ function classNames(...classes: string[]) {
 }
 
 export default function Sidebar() {
+  const theme = useAppSelector((state) => state.theme.value)  
+  //const theme = "dark"
+  const dispatch = useAppDispatch()  
   const [sidebarOpen, setSidebarOpen] = useState(false)
   /*
     These below are in place until i've figured out contexts
   */
-  const colors = ['light', 'dark', 'blue', 'highcontrast'];
-  const [color, setColor] = useState<string>(colors[1])
+  const themes = ['light', 'dark', 'blue', 'highcontrast'];
+  
 
   return (
     <>
@@ -85,7 +91,12 @@ export default function Sidebar() {
         <body class="h-full">
         ```
       */}
-      <div>
+      <div className={[
+            
+            theme && `theme-${theme}`,
+            ]
+            .filter(Boolean)
+            .join(' ')}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
             <Transition.Child
@@ -339,18 +350,19 @@ export default function Sidebar() {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-nav-bg-color py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                    <RadioGroup value={color} onChange={setColor}>
+                    <RadioGroup value={theme} onChange={setTheme}>
                         <RadioGroup.Label className="mt-5 block">
                           Select a color:
                         </RadioGroup.Label>
                         <div className="">
-                          {colors.map((c) => {
+                          {themes.map((c) => {
                             return (
                               <div>
                               <RadioGroup.Option
                                 className=""
                                 value={c}
                                 key={c}
+                                onClick={() => dispatch(setTheme(c))}
                               >
                                 {c}
                               </RadioGroup.Option>

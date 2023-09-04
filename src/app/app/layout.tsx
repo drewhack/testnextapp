@@ -25,21 +25,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const themes = ['light', 'dark', 'blue', 'highcontrast'] 
-  const [theme, setTheme] = useState<string>(themes[2])
+  //const theme = useAppSelector((state) => state.theme.value)
  
-
+  //const theme = "dark";
  
   return (
     <Provider store={store}>
         <html className="h-full bg-white">
           <body className="h-full">
-          <div className={[
-            
-            theme && `theme-${theme}`,
-            ]
-            .filter(Boolean)
-            .join(' ')}>
+          <div>
             <Sidebar /> 
               {children}
           </div> 

@@ -14,14 +14,14 @@ export function ThemeSelector() {
           aria-label="Dark"
           onClick={() => dispatch(setTheme('dark'))}
         >
-          Increment
+          -DARK-
         </button>
         <span>{theme}</span>
         <button
           aria-label="Light"
           onClick={() => dispatch(setTheme('light'))}
         >
-          Decrement
+          -LIGHT-
         </button>
       </div>
     </div>
