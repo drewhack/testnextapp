@@ -1,19 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from "redux";
+import themeReducer from '../../features/themes/themeSlice'
 import counterReducer from '../../features/counter/counterSlice'
-import themeReducer, { initialState as themeInitialState } from '../../features/themes/themeSlice'
-import { loadState } from "./localStorage";
 
-
-
-const preloadedState = {
-
-  theme: loadState()?.theme || themeInitialState, // Use themeInitialState directly
-};
 
 
 const reducers = combineReducers({
-
+  counter: counterReducer,
   theme: themeReducer,
 });
 
@@ -21,7 +14,6 @@ const reducers = combineReducers({
 
 export const store = configureStore({
   reducer: reducers,
-  preloadedState: preloadedState,  
 })
 
 

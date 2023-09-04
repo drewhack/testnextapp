@@ -1,8 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { store, type RootState } from '../../app/app/store'
-import { saveState } from '@/app/app/localStorage'
-
-
 
 // Define a type for the slice state
 
@@ -10,12 +6,9 @@ import { saveState } from '@/app/app/localStorage'
 export interface ThemeState {
   value: string;
 }
-
-// Define the initial state
-export const initialState: ThemeState = {
+const initialState: ThemeState = {
   value: "dark",
-};
-
+}
 
 export const themeSlice = createSlice({
   name: 'theme',
@@ -30,7 +23,7 @@ export const themeSlice = createSlice({
       // immutable state based off those changes.
       // Also, no return statement is required from these functions.
       state.value = action.payload
-      saveState(store.getState());
+
     },
     
   },

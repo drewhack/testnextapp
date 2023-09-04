@@ -71,8 +71,8 @@ function classNames(...classes: string[]) {
 }
 
 export default function Sidebar() {
-  const theme = useAppSelector((state) => state.theme.value)  
-  //const theme = "dark"
+  //const theme = useAppSelector((state) => state.theme.value)  
+  const theme = "dark"
   const dispatch = useAppDispatch()  
   const [sidebarOpen, setSidebarOpen] = useState(false)
   /*
