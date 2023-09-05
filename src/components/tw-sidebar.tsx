@@ -26,7 +26,6 @@ import { setTheme } from '@/features/themes/themeSlice'
 
 
 
-
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
   {
@@ -71,8 +70,7 @@ function classNames(...classes: string[]) {
 }
 
 export default function Sidebar() {
-  //const theme = useAppSelector((state) => state.theme.value)  
-  const theme = "dark"
+  const theme = useAppSelector((state) => state.theme.value)  
   const dispatch = useAppDispatch()  
   const [sidebarOpen, setSidebarOpen] = useState(false)
   /*

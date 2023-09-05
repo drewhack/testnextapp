@@ -4,9 +4,8 @@ import { setTheme } from './themeSlice'
 
 
 export function ThemeSelector() {
-    //const theme = useAppSelector((state) => state.theme.value)
+    const theme = useAppSelector((state) => state.theme.value)
     const dispatch = useAppDispatch()
-    const theme= "dark"
 
   return (
     <div>

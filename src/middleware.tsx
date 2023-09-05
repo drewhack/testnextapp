@@ -5,4 +5,3 @@ import type { NextRequest } from 'next/server'
 export const config = {
   matcher: ['/app/:path*'],
 }
-

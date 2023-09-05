@@ -4,10 +4,8 @@ import { decrement, increment } from './counterSlice'
 
 
 export function Counter() {
-    //const count = useAppSelector((state) => state.counter.value)
+    const count = useAppSelector((state) => state.counter.value)
     const dispatch = useAppDispatch()
-    // this is just to get rid of it
-    const count = 1
 
   return (
     <div>

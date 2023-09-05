@@ -27,13 +27,18 @@ export default function RootLayout({
 }) {
   //const theme = useAppSelector((state) => state.theme.value)
  
-  //const theme = "dark";
+  const theme = "dark";
  
   return (
     <Provider store={store}>
         <html className="h-full bg-white">
           <body className="h-full">
-          <div>
+          <div className={[
+            
+            theme && `theme-${theme}`,
+            ]
+            .filter(Boolean)
+            .join(' ')}>
             <Sidebar /> 
               {children}
           </div> 
